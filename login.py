@@ -5,6 +5,14 @@ def confirmar_senha(senha, confirmacao_senha):
         confirmacao_senha = input('Confirme a senha: ')
     return senha
 
+def confirmar_usuario(usuario, senha):
+    with open("contas.txt") as contas:
+        for linha in contas:
+            user, passwd = linha.strip().split(":")
+            if user == usuario and passwd == senha:
+                return True
+    return False
+
 while True:
     print('Escolha uma opção:')
     print('1) Login')
@@ -14,6 +22,10 @@ while True:
 
     if(opcao == 1):
         print('opcao de login')
+        usuario = input('Digite o nome de usuário: ')
+        senha = input('Digite a senha: ')
+        if confirmar_usuario(usuario, senha): print('login realizado com sucesso!')
+        
     
     elif(opcao == 2):
         usuario = input('Digite o nome de usuário: ')
